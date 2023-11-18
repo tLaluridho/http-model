@@ -31,7 +31,7 @@ class ProductListView extends StatefulWidget {
               title: Text(
                   item["product_name"]?.toString() ?? "Default Product Name"),
               subtitle: Text("${item["price"]}"),
-              onTap: () => controller.deleteProduct(id),
+              onTap: () => controller.deleteProduct(item["id"]),
             ),
           );
         },
