@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http_model/core.dart';
+import 'package:http_model/model/product.dart';
 import '../controller/product_list_controller.dart';
 
 class ProductListView extends StatefulWidget {
@@ -22,15 +23,16 @@ class ProductListView extends StatefulWidget {
         ],
       ),
       body: ListView.builder(
+        padding: const EdgeInsets.all(20),
         itemCount: controller.products.length,
         physics: const ScrollPhysics(),
         itemBuilder: (BuildContext context, int index) {
           var item = controller.products[index];
+          var product = Product.fromJson(item);
           return Card(
             child: ListTile(
-              title: Text(
-                  item["product_name"]?.toString() ?? "Default Product Name"),
-              subtitle: Text("${item["price"]}"),
+              title: Text(product.productName ?? "-"),
+              subtitle: Text(product.price.toString()),
               onTap: () => controller.deleteProduct(item["id"]),
             ),
           );
